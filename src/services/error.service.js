@@ -157,9 +157,13 @@ class ErrorService {
   }
 
   createErrorResponse(err) {
+    // Set appropriate status code (ensure it's a number)
+    const status = parseInt(err.status) || 500;
+    
     const response = {
       status: 'error',
-      message: err.message
+      message: err.message || 'Internal Server Error',
+      code: err.code || 'INTERNAL_SERVER_ERROR'
     };
 
     // Add validation errors if present
@@ -167,12 +171,14 @@ class ErrorService {
       response.errors = err.errors;
     }
 
-    // Set appropriate status code
-    const status = err.status || 500;
+    // Add stack trace in development
+    if (config.env === 'development') {
+      response.stack = err.stack;
+    }
 
     return {
       status,
-      ...response
+      body: response
     };
   }
 }

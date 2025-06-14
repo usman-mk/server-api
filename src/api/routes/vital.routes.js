@@ -1,8 +1,12 @@
 import { Router } from 'express';
 import * as vitalController from '../controllers/vital.controller.js';
 import validationService from '../../services/validation.service.js';
+import { authenticate } from '../../middleware/auth.middleware.js';
 
 const router = Router();
+
+// Apply authentication middleware to all routes
+router.use(authenticate);
 
 // Get all vitals with pagination
 router.get(

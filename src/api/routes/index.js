@@ -4,6 +4,7 @@ import { config } from '../../config/index.js';
 import healthRoutes from './health.routes.js';
 import vitalRoutes from './vital.routes.js';
 import vitalLogRoutes from './vitalLog.routes.js';
+import authRoutes from './auth.routes.js';
 
 const router = Router();
 
@@ -22,5 +23,6 @@ router.use(apiLimiter);
 router.use('/health', healthRoutes);
 router.use('/vitals', vitalRoutes);
 router.use('/vital-logs', vitalLogRoutes);
+router.use('/auth', authRoutes);
 
 export default router;

@@ -1,5 +1,5 @@
-import Vital from '../models/Vital.js';
-import VitalLog from '../models/VitalLog.js';
+import Vital from '../database/models/vital.model.js';
+import VitalLog from '../database/models/vital-log.model.js';
 import logger from './logger.service.js';
 import { emitCreated, emitUpdated, emitDeleted } from './socket.service.js';
 import cacheService from './cache.service.js';

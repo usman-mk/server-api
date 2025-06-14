@@ -20,8 +20,8 @@ export const errorHandler = (err, req, res, next) => {
   }
 
   // Get error response from error service
-  const errorResponse = errorService.createErrorResponse(err);
+  const { status, body } = errorService.createErrorResponse(err);
 
   // Send error response
-  res.status(errorResponse.status).json(errorResponse);
+  res.status(status).json(body);
 }; 

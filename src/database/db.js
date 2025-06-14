@@ -4,7 +4,7 @@ import logger from "../services/logger.service.js";
 
 const sequelize = new Sequelize({
   database: config.database.name,
-  username: config.database.username,
+  username: config.database.user,
   password: config.database.password,
   host: config.database.host,
   port: config.database.port,
@@ -36,5 +36,5 @@ export const initDatabase = async () => {
     throw error; // Let the application handle the error
   }
 };
-
 export default sequelize;
+

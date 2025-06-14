@@ -1,4 +1,4 @@
-import { VitalLog } from '../../database/models/vitalLog.model.js';
+import VitalLog from '../../database/models/vital-log.model.js';
 import errorService from '../../services/error.service.js';
 import logger from '../../services/logger.service.js';
 import { io } from '../../services/socket.service.js';

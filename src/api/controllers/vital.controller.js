@@ -1,4 +1,4 @@
-import { Vital } from '../../database/models/vital.model.js';
+import Vital from '../../database/models/vital.model.js';
 import errorService from '../../services/error.service.js';
 import logger from '../../services/logger.service.js';
 

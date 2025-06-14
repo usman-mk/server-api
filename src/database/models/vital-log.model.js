@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../database/db.js";
+import sequelize from "../db.js";
 
 const VitalLog = sequelize.define(
   "VitalLog",
@@ -20,6 +20,7 @@ const VitalLog = sequelize.define(
     vitalId: {
       type: DataTypes.BIGINT,
       allowNull: false,
+      field: 'vital_id',
       references: {
         model: 'vitals',
         key: 'id'
@@ -28,6 +29,7 @@ const VitalLog = sequelize.define(
     createdBy: {
       type: DataTypes.STRING(100),
       allowNull: true,
+      field: 'created_by'
     },
     createdAt: {
       type: DataTypes.DATE,
@@ -38,15 +40,16 @@ const VitalLog = sequelize.define(
   {
     tableName: "vital_logs",
     timestamps: true,
+    underscored: true,
     updatedAt: false, // We don't need updatedAt for logs
     indexes: [
       {
         name: 'vital_logs_vital_id',
-        fields: ['vitalId']
+        fields: ['vital_id']
       },
       {
         name: 'vital_logs_created_at',
-        fields: ['createdAt']
+        fields: ['created_at']
       }
     ]
   }

@@ -1,49 +1,40 @@
-import { DataTypes } from 'sequelize';
-import sequelize from '../db.js';
+import { DataTypes } from "sequelize";
+import sequelize from "../db.js";
 
-export const Vital = sequelize.define('Vital', {
-  id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true
+const Vital = sequelize.define(
+  "Vital",
+  {
+    id: {
+      type: DataTypes.BIGINT,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    ip: {
+      type: DataTypes.STRING(45),
+      allowNull: false,
+    },
+    port: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    postData: {
+      type: DataTypes.JSON,
+      field: 'post_data'
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
   },
-  temperature: {
-    type: DataTypes.FLOAT,
-    allowNull: false
-  },
-  heartRate: {
-    type: DataTypes.INTEGER,
-    allowNull: false
-  },
-  bloodPressure: {
-    type: DataTypes.JSON,
-    allowNull: false,
-    validate: {
-      isValidBloodPressure(value) {
-        if (!value.systolic || !value.diastolic) {
-          throw new Error('Blood pressure must include systolic and diastolic values');
-        }
-      }
-    }
-  },
-  respiratoryRate: {
-    type: DataTypes.INTEGER,
-    allowNull: false
-  },
-  oxygenSaturation: {
-    type: DataTypes.FLOAT,
-    allowNull: false,
-    validate: {
-      min: 0,
-      max: 100
-    }
-  },
-  createdBy: {
-    type: DataTypes.STRING,
-    allowNull: false
+  {
+    tableName: "vitals",
+    timestamps: true,
+    underscored: true
   }
-}, {
-  tableName: 'vitals',
-  timestamps: true,
-  underscored: true
-}); 
+);
+
+export default Vital;
